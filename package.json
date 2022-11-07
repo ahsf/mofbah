@@ -1,0 +1,14 @@
+{
+  "name": "mofbah",
+  "version": "0.0.1",
+  "description": "My own framework with blackjack and hooks",
+  "main": "index.mjs",
+  "scripts": {
+    "test": "node ./test.mjs"
+  },
+  "keywords": [
+    "blackjack"
+  ],
+  "author": "sf",
+  "license": "MIT"
+}
