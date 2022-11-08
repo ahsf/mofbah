@@ -1,0 +1,43 @@
+<html>
+  <head></head>
+  <body>
+    <script type="module">
+      import {
+        createSignal,
+        createEffect,
+        createMemo,
+      } from './mofbah/mofbah.mjs'
+
+      const el = document.getElementById('el')
+      const [char, setChar] = createSignal('A')
+
+      createEffect(() => (el.textContent = `${char()}`))
+
+      setTimeout(() => setChar('B'), 500)
+      setTimeout(() => setChar('C'), 1000)
+      setTimeout(() => setChar('D'), 1500)
+      setTimeout(() => setChar('E'), 2000)
+      setTimeout(() => setChar('F'), 2500)
+      setTimeout(() => setChar('G'), 3000)
+      setTimeout(() => setChar('H'), 3500)
+      setTimeout(() => setChar('I'), 4000)
+      setTimeout(() => setChar('J'), 4500)
+      setTimeout(() => setChar('K'), 5000)
+      setTimeout(() => setChar('LMNO'), 5500)
+      setTimeout(() => setChar('P'), 6000)
+      setTimeout(() => setChar('Q'), 6500)
+      setTimeout(() => setChar('R'), 7000)
+      setTimeout(() => setChar('S'), 7500)
+      setTimeout(() => setChar('T'), 8000)
+      setTimeout(() => setChar('U'), 8500)
+      setTimeout(() => setChar('V'), 9000)
+      setTimeout(() => setChar('W'), 9500)
+      setTimeout(() => setChar('X'), 10000)
+      setTimeout(() => setChar('Y'), 10500)
+      setTimeout(() => setChar('Z'), 11000)
+      setTimeout(() => setChar('Yuchee!'), 11500)
+    </script>
+
+    <div id="el"></div>
+  </body>
+</html>

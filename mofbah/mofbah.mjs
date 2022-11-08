@@ -56,9 +56,7 @@ export function createEffect(fn) {
 }
 
 export function createMemo(fn) {
-  const [s, set] = createSignal();
-  createEffect(() => set(fn()));
-  return s;
+  const [s, set] = createSignal()
+  createEffect(() => set(fn()))
+  return s
 }
-
-
