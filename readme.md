@@ -15,3 +15,5 @@ $ nvm use 18
 Now using node v18.12.1 (npm v8.19.2)
 $ npm test
 ```
+
+Or open the examples in a browser that can handle modules, eg Chromium.

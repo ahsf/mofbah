@@ -1,5 +1,4 @@
 // code from Ryan Carniato's reactive library tutorials:
-// https://dev.to/ryansolid/a-hands-on-introduction-to-fine-grained-reactivity-3ndf
 // https://dev.to/ryansolid/building-a-reactive-library-from-scratch-1i0p
 // https://indepth.dev/posts/1289/solidjs-reactivity-to-rendering
 

@@ -1,0 +1,63 @@
+<html>
+  <!--
+  > Alternatively, the easiest way to solve this issue,
+  > which many reactive systems support naturally, is to nest effects. 
+  > Since the reactive scope is more or less a stack it is only the 
+  > currently running computation that is actually tracking.
+  
+  NOTE: this solves the problem of #05, but ...
+
+  > This does have one gotcha. 
+  > The observer pattern as used by these reactive libraries has the
+  > potential to produce memory leaks. 
+  > Computations that subscribe to signals that out live them are never 
+  > released as long as the signal is still in use. 
+  > Whenever the signal updates these computations will execute again 
+  > even if not referenced anywhere.
+
+  NOTE: to demonstrate this, show and hide the greeting. 
+  The effect will still run even if the element ist not referenced anymore.
+  -->
+  <head>
+    <title>07_composition</title>
+  </head>
+  <body>
+    <script type="module">
+      import { createSignal, createEffect } from '../mofbah/mofbah.mjs'
+
+      const el = document.getElementById('el')
+
+      function Greeting(props) {
+        const text = document.createTextNode('Hi ')
+        const el = document.createElement('span')
+        createEffect(
+          () => (
+            console.log('updating name to', props.name()),
+            (el.textContent = props.name())
+          ),
+        )
+        return [text, el] // A fragment... :)
+      }
+
+      const [visible, setVisible] = createSignal(false)
+      const [name, setName] = createSignal('Otto')
+
+      createEffect(() => {
+        if (visible()) {
+          el.append(...Greeting({ name: name }))
+        } else el.textContent = 'click here! '
+      })
+
+      el.addEventListener('click', () => {
+        if (visible()) setVisible(false)
+        else setVisible(true)
+      })
+
+      setTimeout(() => setName('Ottokar'), 3000)
+    </script>
+
+    <div id="el">
+      click here!
+    </div>
+  </body>
+</html>

@@ -1,0 +1,53 @@
+<html>
+  <!--
+    > And this brings us to our first challenge. 
+    > What if we wish the name to be changed dynamically?
+ 
+    > Well, we need to make the name into a signal so that we can track the change. 
+    > But this has some repercussions when the greeting is visible. 
+    > Simply tracking and updating will trigger the whole effect. 
+    > Re-running it will recreate the component and append the nodes again! 
+    > We need to avoid this.
+
+    There is no example for this in Ryan's blog post, but I implemented it here anyway.
+    When the Greeting is visible before the timeout sets the name, 
+    there will be two greetings.
+  -->
+  <head>
+    <title>05_composition</title>
+  </head>
+  <body>
+    <script type="module">
+      import { createSignal, createEffect } from '../mofbah/mofbah.mjs'
+
+      const el = document.getElementById('el')
+
+      function Greeting(props) {
+        const text = document.createTextNode('Hi ')
+        const el = document.createElement('span')
+        el.textContent = props.name()
+        return [text, el] // A fragment... :)
+      }
+
+      const [visible, setVisible] = createSignal(false)
+      const [name, setName] = createSignal('Otto')
+
+      createEffect(() => {
+        if (visible()) {
+          el.append(...Greeting({ name: name }))
+        } else el.textContent = 'click here! '
+      })
+
+      el.addEventListener('click', () => {
+        if (visible()) setVisible(false)
+        else setVisible(true)
+      })
+
+      setTimeout(() => setName('Otmar'), 2000)
+    </script>
+
+    <div id="el">
+      click here!
+    </div>
+  </body>
+</html>

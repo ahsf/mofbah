@@ -15,6 +15,9 @@ const it = (desc, fn) => {
 
 let effect_ = null
 
+// implementing the examples from
+// https://dev.to/ryansolid/building-a-reactive-library-from-scratch-1i0p
+
 // -- testing signal and effect
 
 const [count, setCount] = createSignal(0)

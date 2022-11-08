@@ -1,12 +1,10 @@
 <html>
-  <head></head>
+  <head>
+    <title>01_reactive_effects</title>
+  </head>
   <body>
     <script type="module">
-      import {
-        createSignal,
-        createEffect,
-        createMemo,
-      } from './mofbah/mofbah.mjs'
+      import { createSignal, createEffect } from '../mofbah/mofbah.mjs'
 
       const el = document.getElementById('el')
       const [char, setChar] = createSignal('A')

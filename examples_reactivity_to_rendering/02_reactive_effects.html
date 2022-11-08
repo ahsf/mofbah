@@ -1,0 +1,29 @@
+<html>
+  <head>
+    <title>02_reactive_effects</title>
+  </head>
+  <body>
+    <style>
+      .selected {
+        background: red;
+      }
+    </style>
+    <script type="module">
+      import { createSignal, createEffect } from '../mofbah/mofbah.mjs'
+
+      const el = document.getElementById('el')
+      const [selected, setSelected] = createSignal(false)
+
+      createEffect(() => el.classList.toggle('selected', selected()))
+
+      el.addEventListener('click', () => {
+        if (selected()) setSelected(false)
+        else setSelected(true)
+      })
+    </script>
+
+    <div id="el" style="display: inline-block;">
+      Hello, World!
+    </div>
+  </body>
+</html>

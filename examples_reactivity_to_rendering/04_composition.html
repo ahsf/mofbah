@@ -1,0 +1,36 @@
+<html>
+  <head>
+    <title>04_composition</title>
+  </head>
+  <body>
+    <script type="module">
+      import { createSignal, createEffect } from '../mofbah/mofbah.mjs'
+
+      const el = document.getElementById('el')
+
+      function Greeting(props) {
+        const text = document.createTextNode('Hi ')
+        const el = document.createElement('span')
+        el.textContent = props.name
+        return [text, el] // A fragment... :)
+      }
+
+      const [visible, setVisible] = createSignal(false)
+
+      createEffect(() => {
+        if (visible()) {
+          el.append(...Greeting({ name: 'Joseph' }))
+        } else el.textContent = 'click here! '
+      })
+
+      el.addEventListener('click', () => {
+        if (visible()) setVisible(false)
+        else setVisible(true)
+      })
+    </script>
+
+    <div id="el">
+      click here!
+    </div>
+  </body>
+</html>

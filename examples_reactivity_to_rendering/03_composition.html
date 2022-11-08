@@ -1,0 +1,32 @@
+<html>
+  <head>
+    <title>03_composition</title>
+  </head>
+  <body>
+    <script type="module">
+      import { createSignal, createEffect } from '../mofbah/mofbah.mjs'
+
+      const [visible, setVisible] = createSignal(false)
+
+      const el = document.getElementById('el')
+      createEffect(() => {
+        if (visible()) {
+          const text = document.createTextNode('Hi ')
+          const el2 = document.createElement('span')
+          el2.textContent = 'Joseph'
+          el.appendChild(text)
+          el.appendChild(el2)
+        } else el.textContent = 'click here! '
+      })
+
+      el.addEventListener('click', () => {
+        if (visible()) setVisible(false)
+        else setVisible(true)
+      })
+    </script>
+
+    <div id="el">
+      click here!
+    </div>
+  </body>
+</html>

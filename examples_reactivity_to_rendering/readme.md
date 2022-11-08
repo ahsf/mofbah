@@ -1,0 +1,1 @@
+implementing the examples from https://indepth.dev/posts/1289/solidjs-reactivity-to-rendering
